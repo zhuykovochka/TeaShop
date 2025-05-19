@@ -40,8 +40,8 @@
             pictureBoxProduct = new PictureBox();
             labelProductPrice = new Label();
             groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
             labelCart = new Label();
+            groupBox2 = new GroupBox();
             labelWeight = new Label();
             groupBox3 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDownWeight).BeginInit();
@@ -103,6 +103,7 @@
             textBoxTotal.Name = "textBoxTotal";
             textBoxTotal.Size = new Size(112, 32);
             textBoxTotal.TabIndex = 6;
+            textBoxTotal.TextAlign = HorizontalAlignment.Center;
             // 
             // buttonPay
             // 
@@ -165,6 +166,15 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Операции:";
             // 
+            // labelCart
+            // 
+            labelCart.AutoSize = true;
+            labelCart.Location = new Point(28, 96);
+            labelCart.Name = "labelCart";
+            labelCart.Size = new Size(86, 25);
+            labelCart.TabIndex = 15;
+            labelCart.Text = "К оплате:";
+            // 
             // groupBox2
             // 
             groupBox2.Controls.Add(listBoxCart);
@@ -176,15 +186,6 @@
             groupBox2.TabIndex = 14;
             groupBox2.TabStop = false;
             groupBox2.Text = "Корзина:";
-            // 
-            // labelCart
-            // 
-            labelCart.AutoSize = true;
-            labelCart.Location = new Point(28, 96);
-            labelCart.Name = "labelCart";
-            labelCart.Size = new Size(86, 25);
-            labelCart.TabIndex = 15;
-            labelCart.Text = "К оплате:";
             // 
             // labelWeight
             // 
