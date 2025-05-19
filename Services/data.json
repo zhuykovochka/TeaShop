@@ -1,0 +1,26 @@
+[
+    {
+        "Name": "Зеленый чай (на развес)",
+        "PricePerUnit": 300,
+        "RequiresWeighing": true,
+        "ImagePath": "Images/green_tea.jpg"
+    },
+    {
+        "Name": "Черный чай (на развес)",
+        "PricePerUnit": 250,
+        "RequiresWeighing": true,
+        "ImagePath": "Images/black_tea.jpg"
+    },
+    {
+        "Name": "Улун (в пакетиках)",
+        "PricePerUnit": 500,
+        "RequiresWeighing": false,
+        "ImagePath": "Images/oolong.jpg"
+    },
+    {
+        "Name": "Пуэр (в пакетиках)",
+        "PricePerUnit": 700,
+        "RequiresWeighing": false,
+        "ImagePath": "Images/puer.jpg"
+    }
+]
