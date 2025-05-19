@@ -30,7 +30,6 @@
         {
             numericCash = new NumericUpDown();
             numericBonuses = new NumericUpDown();
-            labelTotal = new Label();
             numericCard = new NumericUpDown();
             labelCard = new Label();
             labelBonuses = new Label();
@@ -38,6 +37,7 @@
             buttonConfirm = new Button();
             groupBox1 = new GroupBox();
             groupBox2 = new GroupBox();
+            textBoxTotal = new TextBox();
             ((System.ComponentModel.ISupportInitialize)numericCash).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericBonuses).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numericCard).BeginInit();
@@ -58,19 +58,6 @@
             numericBonuses.Name = "numericBonuses";
             numericBonuses.Size = new Size(137, 31);
             numericBonuses.TabIndex = 1;
-            // 
-            // labelTotal
-            // 
-            labelTotal.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
-            labelTotal.AutoSize = true;
-            labelTotal.Font = new Font("Showcard Gothic", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            labelTotal.ImageAlign = ContentAlignment.TopCenter;
-            labelTotal.Location = new Point(147, 0);
-            labelTotal.Name = "labelTotal";
-            labelTotal.Size = new Size(64, 23);
-            labelTotal.TabIndex = 2;
-            labelTotal.Text = "Итого:";
-            labelTotal.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // numericCard
             // 
@@ -141,12 +128,24 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Чек:";
             // 
+            // textBoxTotal
+            // 
+            textBoxTotal.Dock = DockStyle.Top;
+            textBoxTotal.Enabled = false;
+            textBoxTotal.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            textBoxTotal.Location = new Point(0, 0);
+            textBoxTotal.Name = "textBoxTotal";
+            textBoxTotal.Size = new Size(408, 31);
+            textBoxTotal.TabIndex = 10;
+            textBoxTotal.Text = "Итого:";
+            textBoxTotal.TextAlign = HorizontalAlignment.Center;
+            // 
             // PaymentForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(408, 253);
-            Controls.Add(labelTotal);
+            Controls.Add(textBoxTotal);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(buttonConfirm);
@@ -166,7 +165,6 @@
 
         private NumericUpDown numericCash;
         private NumericUpDown numericBonuses;
-        private Label labelTotal;
         private NumericUpDown numericCard;
         private Label labelCard;
         private Label labelBonuses;
@@ -174,5 +172,6 @@
         private Button buttonConfirm;
         private GroupBox groupBox1;
         private GroupBox groupBox2;
+        private TextBox textBoxTotal;
     }
 }

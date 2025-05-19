@@ -31,7 +31,7 @@ namespace TeaShop.Views
             numericCard.Maximum = _customer.CardBalance;
             numericBonuses.Maximum = _customer.Bonuses;
 
-            labelTotal.Text = $"Счёт: {totalAmount:C}";
+            textBoxTotal.Text = $"Счёт: {totalAmount:C}";
             labelCash.Text = $"Наличные: {_customer.CashBalance:C}";
             labelCard.Text = $"Карта: {_customer.CardBalance:C}";
             labelBonuses.Text = $"Бонусы: {_customer.Bonuses}";
