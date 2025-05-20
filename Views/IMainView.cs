@@ -13,6 +13,6 @@ namespace TeaShop.Views
         void UpdateCart(List<CartItem> cart, decimal total);
         void UpdateCustomerInfo(decimal cashBalance, decimal cardBalance, decimal bonuses);
         void DisplayProductImage(Image image);  
-        void DisplayProductPrice(decimal price);  
+        void DisplayProductPrice(Product product, decimal price);  
     }
 }

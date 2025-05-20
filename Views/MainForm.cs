@@ -23,7 +23,7 @@ namespace TeaApp
         {
             if (listBoxProducts.SelectedItem is Product selectedProduct)
             {
-                DisplayProductPrice(selectedProduct.PricePerUnit);
+                DisplayProductPrice(selectedProduct, selectedProduct.PricePerUnit);
                 var image = Image.FromFile(selectedProduct.ImagePath);
                 DisplayProductImage(image);
             }
@@ -38,9 +38,16 @@ namespace TeaApp
         {
             pictureBoxProduct.Image = image;
         }
-        public void DisplayProductPrice(decimal price)
+        public void DisplayProductPrice(Product product, decimal price)
         {
-            labelProductPrice.Text = $"Цена: {price:C}";
+            if (product.RequiresWeighing)
+            {
+                labelProductPrice.Text = $"Цена за 100 г: {price:C}";
+            }
+            else
+            {
+                labelProductPrice.Text = $"Цена: {price:C}";
+            }
         }
 
         public void UpdateCart(System.Collections.Generic.List<CartItem> cart, decimal total)
