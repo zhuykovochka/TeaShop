@@ -89,9 +89,12 @@
             // 
             // numericUpDownWeight
             // 
-            numericUpDownWeight.Location = new Point(83, 43);
+            numericUpDownWeight.DecimalPlaces = 2;
+            numericUpDownWeight.Increment = new decimal(new int[] { 1000, 0, 0, 131072 });
+            numericUpDownWeight.Location = new Point(95, 43);
+            numericUpDownWeight.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numericUpDownWeight.Name = "numericUpDownWeight";
-            numericUpDownWeight.Size = new Size(121, 31);
+            numericUpDownWeight.Size = new Size(109, 31);
             numericUpDownWeight.TabIndex = 4;
             // 
             // textBoxTotal
@@ -192,9 +195,9 @@
             labelWeight.AutoSize = true;
             labelWeight.Location = new Point(24, 45);
             labelWeight.Name = "labelWeight";
-            labelWeight.Size = new Size(43, 25);
+            labelWeight.Size = new Size(65, 25);
             labelWeight.TabIndex = 16;
-            labelWeight.Text = "Вес:";
+            labelWeight.Text = "Вес (г):";
             // 
             // groupBox3
             // 
