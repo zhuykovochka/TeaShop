@@ -90,7 +90,7 @@ namespace TeaApp
                     MessageBox.Show($"Оплата прошла успешно!\n" +
                                  $"Наличные: {result.PaidAmounts[PaymentType.Cash]:C}\n" +
                                  $"Карта: {result.PaidAmounts[PaymentType.Card]:C}\n" +
-                                 $"Бонусы: {result.PaidAmounts[PaymentType.Bonuses]}");
+                                 $"Бонусы: {result.PaidAmounts[PaymentType.Bonuses]}","Успех", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     _presenter.ClearCart();
                 }
                 else
