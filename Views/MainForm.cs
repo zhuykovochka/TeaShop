@@ -77,7 +77,18 @@ namespace TeaApp
 
         private void buttonPay_Click(object sender, EventArgs e)
         {
+            // Получаем текущую сумму корзины
             decimal total = _presenter.CalculateTotal();
+
+            // Проверяем, есть ли товары в корзине
+            if (total <= 0)
+            {
+                MessageBox.Show("Корзина пуста! Добавьте товары перед оплатой.",
+                               "Ошибка",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Warning);
+                return;
+            }
             var customer = _presenter.GetCustomer();
             var paymentForm = new PaymentForm(total, customer);
 
