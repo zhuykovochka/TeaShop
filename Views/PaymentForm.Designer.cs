@@ -47,6 +47,7 @@
             // 
             // numericCash
             // 
+            numericCash.DecimalPlaces = 2;
             numericCash.Location = new Point(16, 33);
             numericCash.Name = "numericCash";
             numericCash.Size = new Size(137, 31);
@@ -54,6 +55,7 @@
             // 
             // numericBonuses
             // 
+            numericBonuses.DecimalPlaces = 2;
             numericBonuses.Location = new Point(16, 107);
             numericBonuses.Name = "numericBonuses";
             numericBonuses.Size = new Size(137, 31);
@@ -61,6 +63,7 @@
             // 
             // numericCard
             // 
+            numericCard.DecimalPlaces = 2;
             numericCard.Location = new Point(16, 70);
             numericCard.Name = "numericCard";
             numericCard.Size = new Size(137, 31);
