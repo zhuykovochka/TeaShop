@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(RegistrationForm));
             numericCash = new NumericUpDown();
             numericCard = new NumericUpDown();
             numericBonuses = new NumericUpDown();
@@ -125,9 +126,10 @@
             Controls.Add(numericBonuses);
             Controls.Add(numericCard);
             Controls.Add(numericCash);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "RegistrationForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "RegistrationForm";
+            Text = "Регистрация";
             ((System.ComponentModel.ISupportInitialize)numericCash).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericCard).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericBonuses).EndInit();

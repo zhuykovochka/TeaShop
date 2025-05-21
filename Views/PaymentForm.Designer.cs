@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PaymentForm));
             numericCash = new NumericUpDown();
             numericBonuses = new NumericUpDown();
             numericCard = new NumericUpDown();
@@ -152,9 +153,10 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Controls.Add(buttonConfirm);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "PaymentForm";
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "PaymentForm";
+            Text = "Оплата";
             ((System.ComponentModel.ISupportInitialize)numericCash).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericBonuses).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericCard).EndInit();
