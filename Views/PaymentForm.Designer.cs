@@ -153,6 +153,7 @@
             Controls.Add(groupBox1);
             Controls.Add(buttonConfirm);
             Name = "PaymentForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "PaymentForm";
             ((System.ComponentModel.ISupportInitialize)numericCash).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericBonuses).EndInit();

@@ -22,7 +22,6 @@ namespace TeaShop.Views
 
         public PaymentForm(decimal totalAmount, Customer customer)
         {
-            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             _totalAmount = totalAmount;
             _customer = customer;

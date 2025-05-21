@@ -19,7 +19,6 @@ namespace TeaShop.Views
         public RegistrationForm()
         {
             InitializeComponent();
-            this.StartPosition = FormStartPosition.CenterScreen;
         }
         private void btnRegister_Click(object sender, EventArgs e)
         {

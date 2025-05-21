@@ -223,6 +223,7 @@
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TeaShop";
             ((System.ComponentModel.ISupportInitialize)numericUpDownWeight).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProduct).EndInit();

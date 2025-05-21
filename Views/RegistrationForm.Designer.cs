@@ -126,6 +126,7 @@
             Controls.Add(numericCard);
             Controls.Add(numericCash);
             Name = "RegistrationForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "RegistrationForm";
             ((System.ComponentModel.ISupportInitialize)numericCash).EndInit();
             ((System.ComponentModel.ISupportInitialize)numericCard).EndInit();

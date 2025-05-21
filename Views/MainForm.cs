@@ -14,7 +14,6 @@ namespace TeaApp
 
         public MainForm(Customer customer)
         {
-            this.StartPosition = FormStartPosition.CenterScreen;
             InitializeComponent();
             _presenter = new TeaShopPresenter(this, customer);
             // Подписываемся на событие выбора товара
