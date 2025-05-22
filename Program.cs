@@ -1,3 +1,4 @@
+using TeaShop.Presenters;
 using TeaShop.Views;
 
 namespace TeaApp
@@ -22,8 +23,12 @@ namespace TeaApp
                     return;
                 }
 
-                // Создаем главную форму с зарегистрированным пользователем
-                var mainForm = new MainForm(registrationForm.RegisteredCustomer);
+                // Создаем презентер с данными пользователя
+                var presenter = new TeaShopPresenter(registrationForm.RegisteredCustomer);
+
+                // Создаем главную форму, передавая только презентер
+                var mainForm = new MainForm(presenter);
+                presenter.SetView(mainForm); // Связываем презентер с формой
                 Application.Run(mainForm);
             }
         }

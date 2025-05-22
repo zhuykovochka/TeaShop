@@ -12,11 +12,10 @@ namespace TeaApp
     {
         private readonly TeaShopPresenter _presenter;
 
-        public MainForm(Customer customer)
+        public MainForm(TeaShopPresenter presenter)
         {
             InitializeComponent();
-            _presenter = new TeaShopPresenter(this, customer);
-            // Подписываемся на событие выбора товара
+            _presenter = presenter;
             listBoxProducts.SelectedIndexChanged += ListBoxProducts_SelectedIndexChanged;
         }
         private void ListBoxProducts_SelectedIndexChanged(object sender, EventArgs e)
@@ -77,10 +76,7 @@ namespace TeaApp
 
         private void buttonPay_Click(object sender, EventArgs e)
         {
-            // Получаем текущую сумму корзины
             decimal total = _presenter.CalculateTotal();
-
-            // Проверяем, есть ли товары в корзине
             if (total <= 0)
             {
                 MessageBox.Show("Корзина пуста! Добавьте товары перед оплатой.",
@@ -89,25 +85,16 @@ namespace TeaApp
                                MessageBoxIcon.Warning);
                 return;
             }
-            var customer = _presenter.GetCustomer();
-            var paymentForm = new PaymentForm(total, customer);
 
-            if (paymentForm.ShowDialog() == DialogResult.OK)
+            // Презентер сам создает PaymentForm
+            var result = _presenter.ProcessPayment();
+
+            if (result.Success)
             {
-                var result = _presenter.ProcessPayment(paymentForm.PaymentDistribution);
-
-                if (result.Success)
-                {
-                    MessageBox.Show($"Оплата прошла успешно!\n" +
-                                 $"Наличные: {result.PaidAmounts[PaymentType.Cash]:C}\n" +
-                                 $"Карта: {result.PaidAmounts[PaymentType.Card]:C}\n" +
-                                 $"Бонусы: {result.PaidAmounts[PaymentType.Bonuses]}","Успех", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
-                    _presenter.ClearCart();
-                }
-                else
-                {
-                    MessageBox.Show(result.ErrorMessage);
-                }
+                MessageBox.Show($"Оплата прошла успешно!\n" +
+                             $"Наличные: {result.PaidAmounts[PaymentType.Cash]:C}\n" +
+                             $"Карта: {result.PaidAmounts[PaymentType.Card]:C}\n" +
+                             $"Бонусы: {result.PaidAmounts[PaymentType.Bonuses]}", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
             }
         }
     }

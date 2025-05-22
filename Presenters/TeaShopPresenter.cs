@@ -12,18 +12,21 @@ namespace TeaShop.Presenters
 {
     public class TeaShopPresenter
     {
-        private readonly IMainView _view;
+        private IMainView _view;
         private readonly JsonDataService _dataService;
         private readonly Customer _customer;
         private List<Product> _products;
         private readonly PaymentService _paymentService;
 
-        public TeaShopPresenter(IMainView view, Customer customer)
+        public TeaShopPresenter(Customer customer)
         {
-            _view = view;
             _customer = customer;
             _dataService = new JsonDataService();
             _paymentService = new PaymentService();
+        }
+        public void SetView(IMainView view)
+        {
+            _view = view;
             LoadProducts();
             _view.UpdateCustomerInfo(_customer.CashBalance, _customer.CardBalance, _customer.Bonuses);
         }
@@ -37,21 +40,28 @@ namespace TeaShop.Presenters
             _customer.Cart.Clear();
             _view.UpdateCart(_customer.Cart, CalculateTotal());
         }
-        public PaymentResult ProcessPayment(Dictionary<PaymentType, decimal> paymentPlan)
+        public PaymentResult ProcessPayment()
         {
             decimal total = CalculateTotal();
-            var result = _paymentService.ProcessPayment(total, _customer, paymentPlan);
-            if (result.Success)
-            {
-                // Очищаем корзину
-                ClearCart();
-                _view.UpdateCustomerInfo(_customer.CashBalance, _customer.CardBalance, _customer.Bonuses);
-                _view.UpdateCart(_customer.Cart, CalculateTotal());
-            }
+            if (total <= 0)
+                return new PaymentResult { Success = false, ErrorMessage = "Корзина пуста" };
 
-            return result;
+            var paymentForm = new PaymentForm(total, _customer);
+            if (paymentForm.ShowDialog() == DialogResult.OK)
+            {
+                var result = _paymentService.ProcessPayment(total, _customer, paymentForm.PaymentDistribution);
+
+                if (result.Success)
+                {
+                    // Очищаем корзину и обновляем View
+                    ClearCart();
+                    _view.UpdateCustomerInfo(_customer.CashBalance, _customer.CardBalance, _customer.Bonuses);
+                    return result;
+                }
+                return result;
+            }
+            return new PaymentResult { Success = false, ErrorMessage = "Оплата отменена" };
         }
-        public Customer GetCustomer() => _customer;
         public void AddToCart(Product product, decimal weight)
         {
             if (product.RequiresWeighing && weight <= 0)
