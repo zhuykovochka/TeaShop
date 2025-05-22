@@ -108,6 +108,7 @@
             textBoxTotal.Name = "textBoxTotal";
             textBoxTotal.Size = new Size(112, 32);
             textBoxTotal.TabIndex = 6;
+            textBoxTotal.Text = "$0.00";
             textBoxTotal.TextAlign = HorizontalAlignment.Center;
             // 
             // buttonPay
