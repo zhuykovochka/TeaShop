@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             listBoxProducts = new ListBox();
             listBoxCart = new ListBox();
             buttonAddToCart = new Button();
@@ -222,7 +223,9 @@
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TeaShop";
             ((System.ComponentModel.ISupportInitialize)numericUpDownWeight).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProduct).EndInit();

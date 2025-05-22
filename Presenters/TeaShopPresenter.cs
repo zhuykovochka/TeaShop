@@ -18,12 +18,12 @@ namespace TeaShop.Presenters
         private List<Product> _products;
         private readonly PaymentService _paymentService;
 
-        public TeaShopPresenter(IMainView view)
+        public TeaShopPresenter(IMainView view, Customer customer)
         {
             _view = view;
+            _customer = customer;
             _dataService = new JsonDataService();
             _paymentService = new PaymentService();
-            _customer = new Customer();
             LoadProducts();
             _view.UpdateCustomerInfo(_customer.CashBalance, _customer.CardBalance, _customer.Bonuses);
         }

@@ -1,17 +1,31 @@
+using TeaShop.Views;
+
 namespace TeaApp
 {
     internal static class Program
     {
-        /// <summary>
-        ///  The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
-            // To customize application configuration such as set high DPI settings or default font,
-            // see https://aka.ms/applicationconfiguration.
-            ApplicationConfiguration.Initialize();
-            Application.Run(new MainForm());
+            // Вместо ApplicationConfiguration.Initialize()
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.SetHighDpiMode(HighDpiMode.SystemAware);
+
+            // Показываем форму регистрации
+            using (var registrationForm = new RegistrationForm())
+            {
+                if (registrationForm.ShowDialog() != DialogResult.OK)
+                {
+                    MessageBox.Show("Для входа в магазин необходимо зарегистрироваться!",
+                        "Вход отменен", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                // Создаем главную форму с зарегистрированным пользователем
+                var mainForm = new MainForm(registrationForm.RegisteredCustomer);
+                Application.Run(mainForm);
+            }
         }
     }
 }
