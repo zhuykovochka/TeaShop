@@ -48,7 +48,6 @@ namespace TeaApp
                 labelProductPrice.Text = $"Цена: {price:C}";
             }
         }
-
         public void UpdateCart(System.Collections.Generic.List<CartItem> cart, decimal total)
         {
             listBoxCart.DataSource = null;
@@ -67,13 +66,11 @@ namespace TeaApp
                 _presenter.AddToCart(selectedProduct, numericUpDownWeight.Value);
             numericUpDownWeight.Value = 0;
         }
-
         private void buttonRemoveFromCart_Click(object sender, EventArgs e)
         {
             if (listBoxCart.SelectedItem is CartItem selectedItem)
                 _presenter.RemoveFromCart(selectedItem);
         }
-
         private void buttonPay_Click(object sender, EventArgs e)
         {
             decimal total = _presenter.CalculateTotal();
