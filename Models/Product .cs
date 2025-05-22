@@ -10,7 +10,7 @@ namespace TeaShop.Models
     {
         public string Name { get; set; }
         public decimal PricePerUnit { get; set; }
-        public bool RequiresWeighing { get; set; }
+        public bool RequiresWeighing { get; set; } // Цена за 100 грамм
         public string ImagePath { get; set; }  
     }
 }
