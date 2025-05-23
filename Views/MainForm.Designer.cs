@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             listBoxProducts = new ListBox();
             listBoxCart = new ListBox();
             buttonAddToCart = new Button();
@@ -40,8 +41,8 @@
             pictureBoxProduct = new PictureBox();
             labelProductPrice = new Label();
             groupBox1 = new GroupBox();
-            groupBox2 = new GroupBox();
             labelCart = new Label();
+            groupBox2 = new GroupBox();
             labelWeight = new Label();
             groupBox3 = new GroupBox();
             ((System.ComponentModel.ISupportInitialize)numericUpDownWeight).BeginInit();
@@ -54,22 +55,23 @@
             // listBoxProducts
             // 
             listBoxProducts.FormattingEnabled = true;
-            listBoxProducts.Location = new Point(210, 30);
+            listBoxProducts.Location = new Point(238, 30);
             listBoxProducts.Name = "listBoxProducts";
             listBoxProducts.Size = new Size(214, 104);
             listBoxProducts.TabIndex = 0;
             // 
             // listBoxCart
             // 
+            listBoxCart.Font = new Font("Segoe UI", 9F);
             listBoxCart.FormattingEnabled = true;
             listBoxCart.Location = new Point(26, 89);
             listBoxCart.Name = "listBoxCart";
-            listBoxCart.Size = new Size(230, 104);
+            listBoxCart.Size = new Size(351, 104);
             listBoxCart.TabIndex = 1;
             // 
             // buttonAddToCart
             // 
-            buttonAddToCart.Location = new Point(26, 51);
+            buttonAddToCart.Location = new Point(56, 47);
             buttonAddToCart.Name = "buttonAddToCart";
             buttonAddToCart.Size = new Size(112, 34);
             buttonAddToCart.TabIndex = 2;
@@ -79,7 +81,7 @@
             // 
             // buttonRemoveFromCart
             // 
-            buttonRemoveFromCart.Location = new Point(144, 51);
+            buttonRemoveFromCart.Location = new Point(222, 47);
             buttonRemoveFromCart.Name = "buttonRemoveFromCart";
             buttonRemoveFromCart.Size = new Size(112, 34);
             buttonRemoveFromCart.TabIndex = 3;
@@ -89,9 +91,12 @@
             // 
             // numericUpDownWeight
             // 
-            numericUpDownWeight.Location = new Point(83, 43);
+            numericUpDownWeight.DecimalPlaces = 2;
+            numericUpDownWeight.Increment = new decimal(new int[] { 1000, 0, 0, 131072 });
+            numericUpDownWeight.Location = new Point(95, 43);
+            numericUpDownWeight.Maximum = new decimal(new int[] { 10000, 0, 0, 0 });
             numericUpDownWeight.Name = "numericUpDownWeight";
-            numericUpDownWeight.Size = new Size(121, 31);
+            numericUpDownWeight.Size = new Size(109, 31);
             numericUpDownWeight.TabIndex = 4;
             // 
             // textBoxTotal
@@ -99,14 +104,15 @@
             textBoxTotal.Enabled = false;
             textBoxTotal.Font = new Font("Segoe UI Black", 9F, FontStyle.Bold, GraphicsUnit.Point, 0);
             textBoxTotal.ForeColor = SystemColors.ActiveCaptionText;
-            textBoxTotal.Location = new Point(144, 93);
+            textBoxTotal.Location = new Point(222, 108);
             textBoxTotal.Name = "textBoxTotal";
             textBoxTotal.Size = new Size(112, 32);
             textBoxTotal.TabIndex = 6;
+            textBoxTotal.TextAlign = HorizontalAlignment.Center;
             // 
             // buttonPay
             // 
-            buttonPay.Location = new Point(78, 131);
+            buttonPay.Location = new Point(137, 161);
             buttonPay.Name = "buttonPay";
             buttonPay.Size = new Size(112, 34);
             buttonPay.TabIndex = 7;
@@ -135,7 +141,7 @@
             // pictureBoxProduct
             // 
             pictureBoxProduct.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxProduct.Location = new Point(24, 140);
+            pictureBoxProduct.Location = new Point(37, 140);
             pictureBoxProduct.Name = "pictureBoxProduct";
             pictureBoxProduct.Size = new Size(400, 300);
             pictureBoxProduct.SizeMode = PictureBoxSizeMode.Zoom;
@@ -160,10 +166,19 @@
             groupBox1.Controls.Add(textBoxTotal);
             groupBox1.Location = new Point(23, 242);
             groupBox1.Name = "groupBox1";
-            groupBox1.Size = new Size(277, 187);
+            groupBox1.Size = new Size(401, 222);
             groupBox1.TabIndex = 13;
             groupBox1.TabStop = false;
             groupBox1.Text = "Операции:";
+            // 
+            // labelCart
+            // 
+            labelCart.AutoSize = true;
+            labelCart.Location = new Point(67, 111);
+            labelCart.Name = "labelCart";
+            labelCart.Size = new Size(86, 25);
+            labelCart.TabIndex = 15;
+            labelCart.Text = "К оплате:";
             // 
             // groupBox2
             // 
@@ -172,28 +187,19 @@
             groupBox2.Controls.Add(labelBonuses);
             groupBox2.Location = new Point(23, 13);
             groupBox2.Name = "groupBox2";
-            groupBox2.Size = new Size(277, 214);
+            groupBox2.Size = new Size(401, 214);
             groupBox2.TabIndex = 14;
             groupBox2.TabStop = false;
             groupBox2.Text = "Корзина:";
-            // 
-            // labelCart
-            // 
-            labelCart.AutoSize = true;
-            labelCart.Location = new Point(28, 96);
-            labelCart.Name = "labelCart";
-            labelCart.Size = new Size(86, 25);
-            labelCart.TabIndex = 15;
-            labelCart.Text = "К оплате:";
             // 
             // labelWeight
             // 
             labelWeight.AutoSize = true;
             labelWeight.Location = new Point(24, 45);
             labelWeight.Name = "labelWeight";
-            labelWeight.Size = new Size(43, 25);
+            labelWeight.Size = new Size(65, 25);
             labelWeight.TabIndex = 16;
-            labelWeight.Text = "Вес:";
+            labelWeight.Text = "Вес (г):";
             // 
             // groupBox3
             // 
@@ -202,9 +208,9 @@
             groupBox3.Controls.Add(labelWeight);
             groupBox3.Controls.Add(numericUpDownWeight);
             groupBox3.Controls.Add(labelProductPrice);
-            groupBox3.Location = new Point(344, 13);
+            groupBox3.Location = new Point(450, 12);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(450, 451);
+            groupBox3.Size = new Size(479, 451);
             groupBox3.TabIndex = 18;
             groupBox3.TabStop = false;
             groupBox3.Text = "Товар:";
@@ -213,11 +219,13 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(806, 479);
+            ClientSize = new Size(955, 479);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Name = "MainForm";
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "TeaShop";
             ((System.ComponentModel.ISupportInitialize)numericUpDownWeight).EndInit();
             ((System.ComponentModel.ISupportInitialize)pictureBoxProduct).EndInit();

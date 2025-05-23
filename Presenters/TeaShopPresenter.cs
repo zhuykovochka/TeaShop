@@ -18,12 +18,12 @@ namespace TeaShop.Presenters
         private List<Product> _products;
         private readonly PaymentService _paymentService;
 
-        public TeaShopPresenter(IMainView view)
+        public TeaShopPresenter(IMainView view, Customer customer)
         {
             _view = view;
+            _customer = customer;
             _dataService = new JsonDataService();
             _paymentService = new PaymentService();
-            _customer = new Customer();
             LoadProducts();
             _view.UpdateCustomerInfo(_customer.CashBalance, _customer.CardBalance, _customer.Bonuses);
         }
@@ -32,7 +32,11 @@ namespace TeaShop.Presenters
             _products = _dataService.LoadProducts(@"Services\\data.json");
             _view.DisplayProducts(_products);
         }
-        public void ClearCart() => _customer.Cart.Clear();
+        public void ClearCart()
+        {
+            _customer.Cart.Clear();
+            _view.UpdateCart(_customer.Cart, CalculateTotal());
+        }
         public PaymentResult ProcessPayment(Dictionary<PaymentType, decimal> paymentPlan)
         {
             decimal total = CalculateTotal();
@@ -48,7 +52,7 @@ namespace TeaShop.Presenters
             return result;
         }
         public Customer GetCustomer() => _customer;
-        public void AddToCart(Product product, decimal weight = 1)
+        public void AddToCart(Product product, decimal weight)
         {
             if (product.RequiresWeighing && weight <= 0)
             {
@@ -56,15 +60,21 @@ namespace TeaShop.Presenters
                 return;
             }
 
-            _customer.Cart.Add(product);
+            var cartItem = new CartItem
+            {
+                Product = product,
+                Weight = product.RequiresWeighing ? weight : 100 // Для товаров не на развес берем 100г
+            };
+
+            _customer.Cart.Add(cartItem);
             _view.UpdateCart(_customer.Cart, CalculateTotal());
         }
 
-        public void RemoveFromCart(Product product)
+        public void RemoveFromCart(CartItem item)
         {
-            _customer.Cart.Remove(product);
+            _customer.Cart.Remove(item);
             _view.UpdateCart(_customer.Cart, CalculateTotal());
         }
-        public decimal CalculateTotal() => _customer.Cart.Sum(p => p.PricePerUnit);
+        public decimal CalculateTotal() => _customer.Cart.Sum(item => item.TotalPrice);
     }
 }

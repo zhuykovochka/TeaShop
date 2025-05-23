@@ -12,10 +12,10 @@ namespace TeaApp
     {
         private readonly TeaShopPresenter _presenter;
 
-        public MainForm()
+        public MainForm(Customer customer)
         {
             InitializeComponent();
-            _presenter = new TeaShopPresenter(this);
+            _presenter = new TeaShopPresenter(this, customer);
             // Подписываемся на событие выбора товара
             listBoxProducts.SelectedIndexChanged += ListBoxProducts_SelectedIndexChanged;
         }
@@ -23,7 +23,7 @@ namespace TeaApp
         {
             if (listBoxProducts.SelectedItem is Product selectedProduct)
             {
-                DisplayProductPrice(selectedProduct.PricePerUnit);
+                DisplayProductPrice(selectedProduct, selectedProduct.PricePerUnit);
                 var image = Image.FromFile(selectedProduct.ImagePath);
                 DisplayProductImage(image);
             }
@@ -38,16 +38,23 @@ namespace TeaApp
         {
             pictureBoxProduct.Image = image;
         }
-        public void DisplayProductPrice(decimal price)
+        public void DisplayProductPrice(Product product, decimal price)
         {
-            labelProductPrice.Text = $"Цена: {price:C}";
+            if (product.RequiresWeighing)
+            {
+                labelProductPrice.Text = $"Цена за 100 г: {price:C}";
+            }
+            else
+            {
+                labelProductPrice.Text = $"Цена: {price:C}";
+            }
         }
 
-        public void UpdateCart(List<Product> cart, decimal total)
+        public void UpdateCart(System.Collections.Generic.List<CartItem> cart, decimal total)
         {
             listBoxCart.DataSource = null;
             listBoxCart.DataSource = cart;
-            listBoxCart.DisplayMember = "Name";
+            listBoxCart.DisplayMember = "ToString";
             textBoxTotal.Text = total.ToString("C");
         }
         public void UpdateCustomerInfo(decimal cashBalance, decimal cardBalance, decimal bonuses)
@@ -59,17 +66,29 @@ namespace TeaApp
         {
             if (listBoxProducts.SelectedItem is Product selectedProduct)
                 _presenter.AddToCart(selectedProduct, numericUpDownWeight.Value);
+            numericUpDownWeight.Value = 0;
         }
 
         private void buttonRemoveFromCart_Click(object sender, EventArgs e)
         {
-            if (listBoxCart.SelectedItem is Product selectedProduct)
-                _presenter.RemoveFromCart(selectedProduct);
+            if (listBoxCart.SelectedItem is CartItem selectedItem)
+                _presenter.RemoveFromCart(selectedItem);
         }
 
         private void buttonPay_Click(object sender, EventArgs e)
         {
+            // Получаем текущую сумму корзины
             decimal total = _presenter.CalculateTotal();
+
+            // Проверяем, есть ли товары в корзине
+            if (total <= 0)
+            {
+                MessageBox.Show("Корзина пуста! Добавьте товары перед оплатой.",
+                               "Ошибка",
+                               MessageBoxButtons.OK,
+                               MessageBoxIcon.Warning);
+                return;
+            }
             var customer = _presenter.GetCustomer();
             var paymentForm = new PaymentForm(total, customer);
 
@@ -82,7 +101,7 @@ namespace TeaApp
                     MessageBox.Show($"Оплата прошла успешно!\n" +
                                  $"Наличные: {result.PaidAmounts[PaymentType.Cash]:C}\n" +
                                  $"Карта: {result.PaidAmounts[PaymentType.Card]:C}\n" +
-                                 $"Бонусы: {result.PaidAmounts[PaymentType.Bonuses]}");
+                                 $"Бонусы: {result.PaidAmounts[PaymentType.Bonuses]}","Успех", MessageBoxButtons.OK, MessageBoxIcon.Asterisk);
                     _presenter.ClearCart();
                 }
                 else
