@@ -57,7 +57,7 @@
             listBoxProducts.FormattingEnabled = true;
             listBoxProducts.Location = new Point(238, 30);
             listBoxProducts.Name = "listBoxProducts";
-            listBoxProducts.Size = new Size(214, 104);
+            listBoxProducts.Size = new Size(288, 104);
             listBoxProducts.TabIndex = 0;
             // 
             // listBoxCart
@@ -142,7 +142,7 @@
             // pictureBoxProduct
             // 
             pictureBoxProduct.BorderStyle = BorderStyle.FixedSingle;
-            pictureBoxProduct.Location = new Point(37, 140);
+            pictureBoxProduct.Location = new Point(78, 140);
             pictureBoxProduct.Name = "pictureBoxProduct";
             pictureBoxProduct.Size = new Size(400, 300);
             pictureBoxProduct.SizeMode = PictureBoxSizeMode.Zoom;
@@ -211,7 +211,7 @@
             groupBox3.Controls.Add(labelProductPrice);
             groupBox3.Location = new Point(450, 12);
             groupBox3.Name = "groupBox3";
-            groupBox3.Size = new Size(479, 451);
+            groupBox3.Size = new Size(545, 451);
             groupBox3.TabIndex = 18;
             groupBox3.TabStop = false;
             groupBox3.Text = "Товар:";
@@ -220,7 +220,7 @@
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(955, 479);
+            ClientSize = new Size(1023, 479);
             Controls.Add(groupBox3);
             Controls.Add(groupBox2);
             Controls.Add(groupBox1);

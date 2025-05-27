@@ -22,5 +22,53 @@
         "PricePerUnit": 700,
         "RequiresWeighing": false,
         "ImagePath": "Images/puer.jpg"
+    },
+    {
+        "Name": "Зеленый чай «Жасминовый» (на развес)",
+        "PricePerUnit": 350,
+        "RequiresWeighing": true,
+        "ImagePath": "Images/green_jasmine.jpg"
+    },
+    {
+        "Name": "Черный чай «Ассам» (на развес)",
+        "PricePerUnit": 280,
+        "RequiresWeighing": true,
+        "ImagePath": "Images/black_assam.jpg"
+    },
+    {
+        "Name": "Улун «Молочный» (в пакетиках)",
+        "PricePerUnit": 550,
+        "RequiresWeighing": false,
+        "ImagePath": "Images/milk_oolong.jpg"
+    },
+    {
+        "Name": "Пуэр «Королевский» (в пакетиках)",
+        "PricePerUnit": 750,
+        "RequiresWeighing": false,
+        "ImagePath": "Images/royal_puer.jpg"
+    },
+    {
+        "Name": "Белый чай «Серебряные иглы» (на развес)",
+        "PricePerUnit": 600,
+        "RequiresWeighing": true,
+        "ImagePath": "Images/white_tea.jpg"
+    },
+    {
+        "Name": "Каркаде (на развес)",
+        "PricePerUnit": 200,
+        "RequiresWeighing": true,
+        "ImagePath": "Images/hibiscus.jpg"
+    },
+    {
+        "Name": "Чай «Имбирный с лимоном» (в пакетиках)",
+        "PricePerUnit": 320,
+        "RequiresWeighing": false,
+        "ImagePath": "Images/ginger_lemon.jpg"
+    },
+    {
+        "Name": "Чай «Фруктовый микс» (в пакетиках)",
+        "PricePerUnit": 270,
+        "RequiresWeighing": false,
+        "ImagePath": "Images/fruit_mix.jpg"
     }
 ]
