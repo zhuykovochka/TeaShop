@@ -55,6 +55,7 @@
             // listBoxProducts
             // 
             listBoxProducts.FormattingEnabled = true;
+            listBoxProducts.HorizontalScrollbar = true;
             listBoxProducts.Location = new Point(238, 30);
             listBoxProducts.Name = "listBoxProducts";
             listBoxProducts.Size = new Size(288, 104);
@@ -64,6 +65,7 @@
             // 
             listBoxCart.Font = new Font("Segoe UI", 9F);
             listBoxCart.FormattingEnabled = true;
+            listBoxCart.HorizontalScrollbar = true;
             listBoxCart.Location = new Point(26, 89);
             listBoxCart.Name = "listBoxCart";
             listBoxCart.Size = new Size(351, 104);
