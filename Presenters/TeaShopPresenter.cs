@@ -12,11 +12,11 @@ namespace TeaShop.Presenters
 {
     public class TeaShopPresenter
     {
-        private IMainView _view;
+        private IMainView _view; // Ссылка на представление
         private readonly JsonDataService _dataService;
-        private readonly Customer _customer;
+        private readonly Customer _customer; // Текущий покупатель
         private List<Product> _products;
-        private readonly PaymentService _paymentService;
+        private readonly PaymentService _paymentService; // Сервис обработки платежей
 
         public TeaShopPresenter(Customer customer)
         {
@@ -26,8 +26,9 @@ namespace TeaShop.Presenters
         }
         public void SetView(IMainView view)
         {
-            _view = view;
+            _view = view; // Сохраняем ссылку на View
             LoadProducts();
+            // Обновляем информацию о покупателе в View
             _view.UpdateCustomerInfo(_customer.CashBalance, _customer.CardBalance, _customer.Bonuses);
         }
         public void LoadProducts()
@@ -42,13 +43,14 @@ namespace TeaShop.Presenters
         }
         public PaymentResult ProcessPayment()
         {
-            decimal total = CalculateTotal();
+            decimal total = CalculateTotal(); // Рассчитываем сумму
             if (total <= 0)
                 return new PaymentResult { Success = false, ErrorMessage = "Корзина пуста" };
-
+            // Создаем форму оплаты
             var paymentForm = new PaymentForm(total, _customer);
-            if (paymentForm.ShowDialog() == DialogResult.OK)
+            if (paymentForm.ShowDialog() == DialogResult.OK) // Если пользователь подтвердил оплату
             {
+                // Обрабатываем платеж через PaymentService
                 var result = _paymentService.ProcessPayment(total, _customer, paymentForm.PaymentDistribution);
 
                 if (result.Success)
@@ -64,20 +66,21 @@ namespace TeaShop.Presenters
         }
         public void AddToCart(Product product, decimal weight)
         {
+            // Проверка для весовых товаров
             if (product.RequiresWeighing && weight <= 0)
             {
                 MessageBox.Show("Сначала взвесьте товар!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-
+            // Создаем элемент корзины
             var cartItem = new CartItem
             {
                 Product = product,
                 Weight = product.RequiresWeighing ? weight : 100 // Для товаров не на развес берем 100г
             };
 
-            _customer.Cart.Add(cartItem);
-            _view.UpdateCart(_customer.Cart, CalculateTotal());
+            _customer.Cart.Add(cartItem); // Добавляем в корзину покупателя
+            _view.UpdateCart(_customer.Cart, CalculateTotal()); // Обновляем отображение корзины
         }
 
         public void RemoveFromCart(CartItem item)
@@ -85,6 +88,7 @@ namespace TeaShop.Presenters
             _customer.Cart.Remove(item);
             _view.UpdateCart(_customer.Cart, CalculateTotal());
         }
-        public decimal CalculateTotal() => _customer.Cart.Sum(item => item.TotalPrice);
+        //Расчет суммы корзины
+        public decimal CalculateTotal() => _customer.Cart.Sum(item => item.TotalPrice); 
     }
 }
